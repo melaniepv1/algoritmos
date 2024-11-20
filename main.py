@@ -47,7 +47,8 @@ while (True):
   print("4. Mostrar matriz")
   print("5. Ver mapa")
   print("6. Calcular camino más corto")
-  print("7. Salir")
+  print("7. Guardar")
+  print("8. Salir")
 
 
   opc = int(input("Ingrese una opcion: "))
@@ -125,4 +126,8 @@ while (True):
             print(f"El camino más corto entre {start} y {end} es: {path}")
             print(f"La distancia es: {distance}")
   elif opc == 7:
+    saveCSV(coordinatesMatrix, adyacencyMatrix)
+    pass
+  elif opc == 8:
     break
+  
