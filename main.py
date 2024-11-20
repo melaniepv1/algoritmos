@@ -8,9 +8,10 @@ from calculateDistance import calculateDistance
 from readCSV import readCSV
 from shortestPath import dijsktra
 from mapManager import createMap
+from saveCSV import saveCSV
 import numpy as np 
 import coordinatesManager as cm
-from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QPushButton, QTextEdit, QWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtCore import QUrl
 import os
@@ -43,9 +44,11 @@ while (True):
   print("1. Agregar Coordenadas")
   print("2. Actualizar Coordenadas")
   print("3. Eliminar Coordenadas")
-  print("4. Mostar matriz")
+  print("4. Mostrar matriz")
   print("5. Ver mapa")
-  print("6. Salir")
+  print("6. Calcular camino más corto")
+  print("7. Salir")
+
 
   opc = int(input("Ingrese una opcion: "))
 
@@ -58,6 +61,7 @@ while (True):
         float(input("Ingrese la longitud de la coordenada: ")))
     coordinatesMatrix, adyacencyMatrix = cm.addCoordinates(
         newCoordinates, coordinatesMatrix, adyacencyMatrix)
+    saveCSV(coordinatesMatrix, [])
     print("Coordenada agregada")
 
     adyacencyList = input(
@@ -69,6 +73,7 @@ while (True):
     adyacencyMatrix = cm.addAdyacency(adyacencyMatrix,
                                       len(coordinatesMatrix) - 1,
                                       adyacencyList)
+    saveCSV([], adyacencyMatrix)
     print("Adyacencia agregada")
 
   elif opc == 2:
@@ -107,4 +112,17 @@ while (True):
     viewer.show()
     app.exec_()  
   elif opc == 6:
+    start = int(input("Ingrese el nodo de inicio: "))
+    end = int(input("Ingrese el nodo de destino: "))
+    if start < 0 or start >= len(coordinatesMatrix) or end < 0 or end >= len(coordinatesMatrix):
+        print("Índices inválidos. Intente nuevamente.")
+    else:
+        path, distance = dijsktra(adyacencyMatrix, start, end)
+        
+        if distance == float("inf"):
+            print("No hay camino entre los nodos.")
+        else:
+            print(f"El camino más corto entre {start} y {end} es: {path}")
+            print(f"La distancia es: {distance}")
+  elif opc == 7:
     break
