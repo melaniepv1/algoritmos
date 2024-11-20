@@ -11,11 +11,11 @@ Restricciones:
 
 def readCSV():
 
-  coordinatesPath = "./Data/coordinatesMatrix.csv"
+  coordinatesPath = "./Data/ncoordinatesMatrix.csv"
   df = pd.read_csv(coordinatesPath)
   coordinatesMatrix = df.values.tolist()
 
-  adyacencyPath = "./Data/adyacencyMatrix.csv"
+  adyacencyPath = "./Data/nadyacencyMatrix.csv"
   df = pd.read_csv(adyacencyPath)
   adyacencyMatrix = df.values.tolist()
 

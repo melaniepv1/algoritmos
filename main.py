@@ -60,9 +60,9 @@ while (True):
         input("Ingrese la latitud de la coordenada: ")))
     newCoordinates.append(
         float(input("Ingrese la longitud de la coordenada: ")))
+    newCoordinates.append('#888888')  
     coordinatesMatrix, adyacencyMatrix = cm.addCoordinates(
         newCoordinates, coordinatesMatrix, adyacencyMatrix)
-    saveCSV(coordinatesMatrix, [])
     print("Coordenada agregada")
 
     adyacencyList = input(
@@ -74,7 +74,6 @@ while (True):
     adyacencyMatrix = cm.addAdyacency(adyacencyMatrix,
                                       len(coordinatesMatrix) - 1,
                                       adyacencyList)
-    saveCSV([], adyacencyMatrix)
     print("Adyacencia agregada")
 
   elif opc == 2:
