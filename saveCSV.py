@@ -9,7 +9,7 @@ Restricciones:
 def saveCSV(coordinatesMatrix, adyacencyMatrix):
     coordinatesHeader = ['Name', 'Latitude', 'Longitude', 'Color']
     coordinatesMatrix = [coordinatesHeader] + coordinatesMatrix
-    coordinatesPath = "./Data/ncoordinatesMatrix.csv"
+    coordinatesPath = "./Data/coordinatesMatrix.csv"
     df_coordinates = pd.DataFrame(coordinatesMatrix)
     df_coordinates.to_csv(coordinatesPath, index=False, header=False)
 
@@ -22,6 +22,6 @@ def saveCSV(coordinatesMatrix, adyacencyMatrix):
         adyacencyMatrix[id] = [coordinatesMatrix[id+1][0]] + row
         
     adyacencyMatrix = [adyacencyFirstRow] + adyacencyMatrix        
-    adyacencyPath = "./Data/nadyacencyMatrix.csv"
+    adyacencyPath = "./Data/adyacencyMatrix.csv"
     df_adyacency = pd.DataFrame(adyacencyMatrix)
     df_adyacency.to_csv(adyacencyPath, index=False, header=False)
