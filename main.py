@@ -19,8 +19,6 @@ import os
 
 coordinatesMatrix, adyacencyMatrix = readCSV()
 distanceMatrix = calculateDistance(coordinatesMatrix, adyacencyMatrix)
-createMap(coordinatesMatrix, adyacencyMatrix)
-
 
 
 class MapViewer(QMainWindow):
@@ -107,10 +105,11 @@ while (True):
     adyacencyMatrixNP = np.array(adyacencyMatrix)
     print(adyacencyMatrixNP)
   elif opc == 5:
+    createMap(coordinatesMatrix, adyacencyMatrix)
     app = QApplication(sys.argv)
     viewer = MapViewer()
     viewer.show()
-    app.exec_()  
+    app.exec_()
   elif opc == 6:
     start = int(input("Ingrese el nodo de inicio: "))
     end = int(input("Ingrese el nodo de destino: "))

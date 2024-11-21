@@ -16,6 +16,7 @@ def addCoordinates(newCoordinates, coordinatesMatrix, adyacencyMatrix):
 def addAdyacency(adyacencyMatrix, newCoordinatesIndex, adyacencyList):
   for adyacency in adyacencyList:
     adyacencyMatrix[newCoordinatesIndex][adyacency] = 1
+    adyacencyMatrix[adyacency][newCoordinatesIndex] = 1
   return adyacencyMatrix
 
 
