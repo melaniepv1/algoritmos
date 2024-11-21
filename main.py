@@ -3,7 +3,7 @@ Proyecto programado 2
 Melanie Parra Valverde (2024239734)
 Carlos Hernandez Calderon (2024283448)
 """
-import sys
+
 from calculateDistance import calculateDistance 
 from readCSV import readCSV
 from shortestPath import dijsktra
@@ -11,14 +11,25 @@ from mapManager import createMap
 from saveCSV import saveCSV
 import numpy as np 
 import coordinatesManager as cm
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5.QtWebEngineWidgets import QWebEngineView
-from PyQt5.QtCore import QUrl
-import os
+import GUI
 
 
 coordinatesMatrix, adyacencyMatrix = readCSV()
 distanceMatrix = calculateDistance(coordinatesMatrix, adyacencyMatrix)
+
+GUI.createWindow()
+    
+
+
+
+
+
+
+
+
+
+
+'''
 
 
 class MapViewer(QMainWindow):
@@ -129,3 +140,4 @@ while (True):
   elif opc == 8:
     break
   
+'''
