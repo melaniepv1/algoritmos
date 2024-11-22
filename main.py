@@ -13,12 +13,14 @@ from PyQt5.QtCore import Qt, QUrl
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QSpacerItem, QSizePolicy
 
-global coordinatesMatrix, adyacencyMatrix
-coordinatesMatrix, adyacencyMatrix = readCSV()
+
+
+os.system('cls')
 
 def createWindow():
     class MainWindow(QMainWindow):
         def __init__(self):
+            coordinatesMatrix, adyacencyMatrix = readCSV()
             super().__init__()
             self.setWindowTitle("Mapa Interactivo")
             self.setFixedSize(1280, 720)
@@ -79,8 +81,8 @@ def createWindow():
             self.buttons = [
                 self.createButton("Agregar Coordenadas", self.addCoordinatesButtonFunc),
                 self.createButton("Actualizar Coordenadas", print),
-                self.createButton("Eliminar Coordenadas", print),
-                self.createButton("Mostrar Matriz", print),
+                self.createButton("Eliminar Coordenadas", self.deleteCoordinatesButtonFunc),
+                self.createButton("Mostrar Matriz", gui.showMatrixGUI),
                 self.createButton("Calcular Camino Más Corto", print),
                 self.createButton("Guardar", print),
             ]
@@ -154,6 +156,13 @@ def createWindow():
         def addCoordinatesButtonFunc(self):
           gui.addCoordinatesGUI()
           self.updateMap()
+
+        """
+        Las otras funciones
+        """
+        def deleteCoordinatesButtonFunc(self) : #Aqui se le pasa por parámetro el objeto, osea la ventana por así decirlo, la clase jsdjkls
+            gui.deleteCoordinatesGUI() #Invoca la función que aún no hacemos para eliminar jskd
+            self.updateMap() #Actualiza el mapa
           
 
     app = QApplication(sys.argv)

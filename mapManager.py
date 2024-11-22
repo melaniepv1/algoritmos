@@ -9,6 +9,8 @@ def createMap(coordinatesMatrix, adyacencyMatrix):
 
     map = folium.Map(location=center, zoom_start=16)
 
+    print(len(adyacencyMatrix))
+    print(len(coordinatesMatrix))
  
     for i, coords in enumerate(coordinatesMatrix):
         folium.Marker(location=coords[1:3], popup=coords[0], icon=folium.Icon(color='black',icon_color=coords[3], icon="bookmark")).add_to(map)
