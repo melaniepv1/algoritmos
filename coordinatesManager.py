@@ -1,9 +1,17 @@
 '''
-Entradas:
-Salidas:
-Restricciones:
-'''
+def addCoordinates(newCoordinates, coordinatesMatrix, adyacencyMatrix)
 
+Entradas:  
+        - newCoordinates (list)
+        - coordinatesMatrix (matriz)
+        - adyacencyMatrix (matriz)
+Salidas:  
+        - coordinatesMatrix (matriz): Matriz de coordenadas con la nueva coordenada agregada.  
+        - adyacencyMatrix (matriz): Matriz de adyacencias con las conexiones correspondientes a la nueva coordenada.  
+Restricciones:  
+        - La matriz de coordenadas y la de adyacencias deben tener el mismo tamaño antes de agregar una nueva coordenada.  
+
+'''
 
 def addCoordinates(newCoordinates, coordinatesMatrix, adyacencyMatrix):
   coordinatesMatrix.append(newCoordinates)
@@ -12,6 +20,19 @@ def addCoordinates(newCoordinates, coordinatesMatrix, adyacencyMatrix):
     row.append(0)
   return coordinatesMatrix, adyacencyMatrix
 
+'''
+def addAdyacency(adyacencyMatrix, newCoordinatesIndex, adyacencyList)
+
+Entradas:  
+        - adyacencyMatrix (matriz)  
+        - newCoordinatesIndex (int)  
+        - adyacencyList (list)  
+Salidas:  
+        - adyacencyMatrix (matriz): Matriz de adyacencias con las nuevas conexiones para el índice especificado.  
+Restricciones:  
+        - La matriz debe ser cuadrada.  
+        - El índice `newCoordinatesIndex` debe ser válido dentro del rango de la matriz. 
+'''
 
 def addAdyacency(adyacencyMatrix, newCoordinatesIndex, adyacencyList):
   for adyacency in adyacencyList:
@@ -19,6 +40,19 @@ def addAdyacency(adyacencyMatrix, newCoordinatesIndex, adyacencyList):
     adyacencyMatrix[adyacency][newCoordinatesIndex] = 1
   return adyacencyMatrix
 
+'''
+def updateAdyacency(adyacencyMatrix, index, adyacencyList)
+
+Entradas:  
+        - adyacencyMatrix (matriz)  
+        - index (int)  
+        - adyacencyList (list)  
+Salidas:  
+        - adyacencyMatrix (matriz): Matriz de adyacencias con las nuevas conexiones para el índice especificado.  
+Restricciones:  
+        - La matriz debe ser cuadrada.  
+        - El índice debe ser válido dentro del rango de la matriz.  
+''' 
 
 def updateAdyacency(adyacencyMatrix, index, adyacencyList):
   for x, _ in enumerate(adyacencyMatrix):
@@ -33,11 +67,19 @@ def updateAdyacency(adyacencyMatrix, index, adyacencyList):
 
 
 '''
-Entradas:
-Salidas:
-Restricciones:
-'''
+def deleteCoordinates(coordinatesMatrix, adyacencyMatrix, index)
 
+Entradas:
+        - coordinatesMatrix (Matriz)
+        - adyacencyMatrix (Matriz)
+        - index (int)
+Salidas:
+        - coordinatesMatrix (matriz): Matriz de coordenadas con el nodo eliminado.
+        - adyacencyMatrix (matriz): Matriz de adyacencias con las conexiones del nodo eliminado.
+Restricciones:
+        - La matriz debe ser cuadrada.
+        - El índice debe ser válido dentro del rango de la matriz.
+'''
 
 def deleteCoordinates(coordinatesMatrix, adyacencyMatrix, index):
   del coordinatesMatrix[index]
@@ -52,9 +94,16 @@ def deleteCoordinates(coordinatesMatrix, adyacencyMatrix, index):
 
 
 '''
-Entradas:
+def updateDeleteAdyacency(adyacencyMatrix, index)
+
+Entradas: 
+        - adyacencyMatrix  (matriz)
+        - index (int)
 Salidas:
+        - adyacencyMatrix  (matriz): Matriz actualizada donde las conexiones del nodo especificado se han eliminado.
 Restricciones:
+        - La matriz debe ser cuadrada.
+        - El índice debe ser válido dentro del rango de la matriz.
 '''
 def updateDeleteAdyacency(adyacencyMatrix, index):
   for x in range(len(adyacencyMatrix)):

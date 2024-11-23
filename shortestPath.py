@@ -1,11 +1,16 @@
 '''
-Input:
-- graph
-- start
-- end
-Output:
-- shortestPath
-- distance
+Entradas:
+    - graph (Matriz)
+    - start (int)
+    - end (int)
+
+Salidas:
+    - path (Lista de enteros): Lista con los índices de los nodos que conforman el camino más corto desde el nodo de inicio al nodo destino.
+    - distance (float): Distancia total del camino más corto entre el nodo de inicio y el nododestino.
+
+Restricciones:
+    - La matriz `graph` debe ser una matriz cuadrada.
+    - Los índices `start` y `end` deben estar dentro del rango válido de nodos en graph.
 '''
 def dijsktra(graph, start, end):
 

@@ -4,10 +4,16 @@ from haversine import Unit
 def calculateDistance 
 
 Entradas:
+    - coordinatesMatrix (Matriz)
+      [nombre, latitud, longitud, color], latitud y longitud son float.
+    - adyacencyMatrix (Matriz)
 
 Salidas:
+    - distanceMatrix (Matriz): Una matriz que representa las distancias entre edificios conectados.
 
 Restricciones:
+    - En coordinatesMatrix, cada elemento debe tener al menos tres elementos [nombre, latitud, longitud].
+    - adyacencyMatrix: Debe ser una matriz cuadrada.
 '''
 
 

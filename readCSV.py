@@ -1,12 +1,17 @@
 import pandas as pd
+
 '''
-def readCSV(path)
 Entradas:
+    - No hay.
 
 Salidas:
+    - coordinatesMatrix (Matriz): Matriz de coordenadas leída desde el archivo CSV.
+    - adyacencyMatrix (Matriz): Matriz de adyacencia leída desde el archivo CSV.
 
 Restricciones:
+    - Los archivos CSV `coordinatesMatrix.csv` y `adyacencyMatrix.csv` deben existir en la carpeta `./Data/`.
 '''
+
 
 
 def readCSV():

@@ -2,9 +2,17 @@ import pandas as pd
 
 '''
 Entradas:
+    - coordinatesMatrix (Matriz)
+    - adyacencyMatrix (Matriz)
+
 Salidas:
+    - Guarda los datos en archivos CSV.
+
 Restricciones:
+    - coordinatesMatrix debe contener al menos una fila de encabezado con los campos 'Name', 'Latitude', 'Longitude', 'Color'.
+    - Los valores en la matriz `adyacencyMatrix` deben ser numéricos.
 '''
+
 
 def saveCSV(coordinatesMatrix, adyacencyMatrix):
     coordinatesHeader = ['Name', 'Latitude', 'Longitude', 'Color']
