@@ -237,14 +237,14 @@ def addCoordinatesGUI():
             coordinatesMatrix, adyacencyMatrix = readCSV()
             newCoordinates = [name, latitude, longitude, selectedColor.name()]
             print(adyacencyMatrix[0], "Se aceptó agregar Coordenadas")
-            nCoordinatesMatrix, nAdyacencyMatrix = cm.addCoordinates(newCoordinates, coordinatesMatrix, adyacencyMatrix)
-            print(nAdyacencyMatrix[0], "Se instancio nAdyacencia")
-            adyacencyList = getAdyacencyList(nCoordinatesMatrix)
+            coordinatesMatrix, adyacencyMatrix = cm.addCoordinates(newCoordinates, coordinatesMatrix, adyacencyMatrix)
+            print(adyacencyMatrix[0], "Se instancio nAdyacencia")
+            adyacencyList = getAdyacencyList(coordinatesMatrix)
             
-            nAdyacencyMatrix = cm.addAdyacency(adyacencyMatrix, (len(adyacencyMatrix)-1), adyacencyList)
-            print(nAdyacencyMatrix[0],"Se agregó la adyacencia")
-            saveCSV(nCoordinatesMatrix, nAdyacencyMatrix)
-            print(nAdyacencyMatrix[0], "Se guardó")
+            adyacencyMatrix = cm.addAdyacency(adyacencyMatrix, (len(adyacencyMatrix)-1), adyacencyList)
+            print(adyacencyMatrix[0],"Se agregó la adyacencia")
+            saveCSV(coordinatesMatrix, adyacencyMatrix)
+            print(adyacencyMatrix[0], "Se guardó")
             
             dialog.accept()
         
@@ -261,20 +261,20 @@ def addCoordinatesGUI():
 
 
 """
-def getAdyacencyList(nCoordinatesMatrix)
+def getAdyacencyList(coordinatesMatrix)
 
 Entradas:
-    - nCoordinatesMatrix (matriz)
+    - coordinatesMatrix (matriz)
 
 Salidas:
     - Una lista de listas de valores booleanos donde cada valor indica si una coordenada es adyacente a otra.
 
 Restricciones:
-    - nCoordinatesMatrix debe ser una lista no vacía de coordenadas.
+    - coordinatesMatrix debe ser una lista no vacía de coordenadas.
     - El índice de cada coordenada debe ser único.
 """
     
-def getAdyacencyList(nCoordinatesMatrix):
+def getAdyacencyList(coordinatesMatrix):
     dialog = QDialog()
     dialog.setWindowTitle("Agregar Adyacencias")
     dialog.setFixedSize(450, 500)
@@ -297,7 +297,7 @@ def getAdyacencyList(nCoordinatesMatrix):
     scrollLayout = QVBoxLayout()
 
     checkboxes = []
-    for index, coordinate in enumerate(nCoordinatesMatrix[:-1]):
+    for index, coordinate in enumerate(coordinatesMatrix[:-1]):
         checkbox = QCheckBox(f"{coordinate[0]} (Índice: {index})")
         checkbox.setStyleSheet("""
             QCheckBox {
