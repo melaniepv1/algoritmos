@@ -27,6 +27,4 @@ def readCSV():
   for index, rows in enumerate(adyacencyMatrix):
     adyacencyMatrix[index] = rows[1:]
 
-  print(adyacencyMatrix[0], "Se leyó la adyacencia")
-
   return coordinatesMatrix, adyacencyMatrix
