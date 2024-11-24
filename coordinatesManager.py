@@ -110,3 +110,11 @@ def updateDeleteAdyacency(adyacencyMatrix, index):
       adyacencyMatrix[index][x] = float("inf")
       adyacencyMatrix[x][index] = float("inf")
   return adyacencyMatrix
+
+
+def disconectCoords(index, adyacencyMatrix):
+        for i, _ in enumerate(adyacencyMatrix):
+                adyacencyMatrix[i][index] = 0
+                adyacencyMatrix[index][i] = 0
+        return adyacencyMatrix
+                
