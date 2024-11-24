@@ -72,12 +72,12 @@ class MainWindow(QMainWindow):
         self.buttonsLayout.addWidget(titleLabel, alignment=Qt.AlignTop)
 
         self.buttons = [
+            self.createButton("Calcular Camino Más Corto", self.shortestPathButtonFunc),
             self.createButton("Agregar Coordenadas", self.addCoordinatesButtonFunc),
             self.createButton("Actualizar Coordenadas", self.updateCoordinatesButtonFunc),
             self.createButton("Eliminar Coordenadas", self.deleteCoordinatesButtonFunc),
+            self.createButton("Desconectar Coordenada", self.disconnectCoordinatesButtonFunc),
             self.createButton("Mostrar Matriz", gui.showMatrixGUI),
-            self.createButton("Calcular Camino Más Corto", self.shortestPathButtonFunc),
-            self.createButton("Guardar", print),
         ]
 
         self.buttonsLayout.addSpacerItem(QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding))
@@ -182,6 +182,10 @@ class MainWindow(QMainWindow):
         htmlPath = os.path.join(direction, "./Map.html")
         self.web_view.setUrl(QUrl.fromLocalFile(htmlPath))
 
+    def disconnectCoordinatesButtonFunc(self):
+        gui.disconnectCoordinatesGUI()
+        self.updateMap()
+        
 app = QApplication(sys.argv)
 window = MainWindow()
 window.show()
