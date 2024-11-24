@@ -236,16 +236,10 @@ def addCoordinatesGUI():
         if name and latitude and longitude:
             coordinatesMatrix, adyacencyMatrix = readCSV()
             newCoordinates = [name, latitude, longitude, selectedColor.name()]
-            print(adyacencyMatrix[0], "Se aceptó agregar Coordenadas")
             coordinatesMatrix, adyacencyMatrix = cm.addCoordinates(newCoordinates, coordinatesMatrix, adyacencyMatrix)
-            print(adyacencyMatrix[0], "Se instancio nAdyacencia")
             adyacencyList = getAdyacencyList(coordinatesMatrix)
-            
             adyacencyMatrix = cm.addAdyacency(adyacencyMatrix, (len(adyacencyMatrix)-1), adyacencyList)
-            print(adyacencyMatrix[0],"Se agregó la adyacencia")
             saveCSV(coordinatesMatrix, adyacencyMatrix)
-            print(adyacencyMatrix[0], "Se guardó")
-            
             dialog.accept()
         
 
@@ -429,7 +423,7 @@ def showMatrixGUI():
     
     mainLayout = QHBoxLayout()
     
-    ShowCoordinatesMatrixButton = QPushButton("Show Coordinates")
+    ShowCoordinatesMatrixButton = QPushButton("Mostrar Coordenadas")
     ShowCoordinatesMatrixButton.setStyleSheet("""
         QPushButton {
             background-color: #FFB6C1;
@@ -447,7 +441,7 @@ def showMatrixGUI():
         }
     """)
 
-    ShowAdyacencyMatrixButton = QPushButton("Show Adyacency")
+    ShowAdyacencyMatrixButton = QPushButton("Mostrar Adyacencia")
     ShowAdyacencyMatrixButton.setStyleSheet("""
         QPushButton {
             background-color: #FFB6C1;
@@ -495,7 +489,7 @@ def showMatrixGUI():
         scrollWidget = QWidget()
         scrollLayout = QGridLayout()
         
-        nameLabel = QLabel("Name")
+        nameLabel = QLabel("Nombre")
         nameLabel.setStyleSheet("""
                             QLabel{
                                 font-size: 16px;
@@ -509,7 +503,7 @@ def showMatrixGUI():
                             """)
         nameLabel.setFixedHeight(40)
         
-        latLabel = QLabel("Latitude")
+        latLabel = QLabel("Latitud")
         latLabel.setStyleSheet("""
                             QLabel{
                                 font-size: 16px;
@@ -521,7 +515,7 @@ def showMatrixGUI():
                             }
                             """)
         
-        lonLabel = QLabel("Longitude")
+        lonLabel = QLabel("Longitud")
         lonLabel.setStyleSheet("""
                             QLabel{
                                 font-size: 16px;
@@ -599,7 +593,7 @@ def showMatrixGUI():
         scrollWidget = QWidget()
         scrollLayout = QGridLayout()
         
-        nameLabel = QLabel("Name")
+        nameLabel = QLabel("Nombre")
         nameLabel.setStyleSheet("""
                             QLabel{
                                 font-size: 16px;
@@ -1204,5 +1198,68 @@ def findShortestPathGUI():
     mainLayout.addWidget(acceptButton)
 
 
+    dialog.setLayout(mainLayout)
+    dialog.exec_()
+
+def disconnectCoordinatesGUI():
+    
+    coordinatesMatrix, adyacencyMatrix = readCSV()
+
+    dialog = QDialog()
+    dialog.setWindowTitle("Desconectar Coordenada")
+    dialog.setFixedSize(400, 180)
+    iconPath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "./icon.ico")
+    dialog.setWindowIcon(QIcon(iconPath))
+
+    mainLayout = QVBoxLayout()
+
+    instructionsLabel = QLabel("Seleccione la coordenada a desconectar")
+    instructionsLabel.setStyleSheet("""
+        QLabel {
+            font-size: 16px;
+            font-weight: bold;
+            color: #FF99A1;
+        }
+    """)
+    mainLayout.addWidget(instructionsLabel)
+    
+    comboBox = QComboBox()
+    for coords in coordinatesMatrix:
+        comboBox.addItem(coords[0])
+    mainLayout.addWidget(comboBox)
+    
+    def disconectFunctionButton():
+        coordinatesMatrix, adyacencyMatrix = readCSV()
+        index = comboBox.currentIndex()
+        adyacencyMatrix = cm.disconectCoords(index, adyacencyMatrix)
+        saveCSV(coordinatesMatrix, adyacencyMatrix)
+        dialog.accept()
+    
+    
+    
+    
+    button = QPushButton("Desconectar")
+    button.setStyleSheet("""
+        QPushButton {
+            background-color: #FFB6C1;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 14px 10px;
+            border-radius: 8px;
+        }
+        QPushButton:hover {
+            background-color: #FF99A1;
+        }
+        QPushButton:pressed {
+            background-color: #FF7F89;
+        }
+    """)
+    button.clicked.connect(disconectFunctionButton) 
+    mainLayout.addWidget(button)
+
+    
+    
     dialog.setLayout(mainLayout)
     dialog.exec_()
